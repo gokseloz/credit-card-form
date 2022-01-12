@@ -6,11 +6,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "../dist"),
     filename: "index.bundle.js",
     clean: true,
   },
-  devtool: "eval-source-map",
 
   devServer: {
     port: 3010,
