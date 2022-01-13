@@ -1,11 +1,5 @@
-@use "global";
-
-@mixin flexbox($direction: row, $jc: center, $ai: stretch) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $jc;
-  align-items: $ai;
-}
+@use "base";
+@use "variables";
 
 body {
   width: 100%;
@@ -42,21 +36,21 @@ body {
   }
 
   &-front {
-    @include flexbox(column, space-between, stretch);
+    @include base.flexbox(column, space-between, stretch);
     backface-visibility: hidden;
     padding: 2rem;
 
     &-top {
-      @include flexbox(row, space-between, center);
+      @include base.flexbox(row, space-between, center);
     }
 
     &-cardNumber {
-      color: #fff;
-      font-size: 1.2rem;
+      color: variables.$clr-white;
+      font-size: variables.$fs-medium;
     }
 
     &-bottom {
-      @include flexbox(row, space-between, center);
+      @include base.flexbox(row, space-between, center);
     }
   }
 
@@ -69,9 +63,9 @@ body {
       left: 2rem;
       bottom: 2rem;
       padding: 0.7rem;
-      @include flexbox(row, flex-end, center);
+      @include base.flexbox(row, flex-end, center);
       gap: 1rem;
-      color: #000;
+      color: variables.$clr-black;
 
       &::before {
         content: "";
@@ -108,7 +102,7 @@ body {
 
   &-expiryDate-wrapper,
   &-holder-wrapper {
-    @include flexbox(column, flex-end, stretch);
+    @include base.flexbox(column, flex-end, stretch);
 
     gap: 0.3rem;
   }
@@ -121,16 +115,16 @@ body {
   }
 
   &-key {
-    font-size: 0.8rem;
+    font-size: variables.$fs-small;
     text-transform: capitalize;
   }
 }
 
 .form-container {
-  width: 500px;
-  @include flexbox(column, stretch, stretch);
+  width: clamp(350px, 50vw, 700px);
+  @include base.flexbox(column, stretch, stretch);
   background: rgb(255, 255, 255);
-  padding: 10rem 1rem 1rem;
+  padding: 160px 16px 16px;
   box-shadow: 0px 5px 13px 0px rgb(0 0 0 / 35%);
   border-radius: 10px;
 }
@@ -151,10 +145,11 @@ body {
     border-radius: 10px;
     padding: 0.5rem;
     border: 2px solid rgb(228, 221, 221);
+    font-size: 1rem;
   }
 
   &-key {
-    color: #222;
+    color: variables.$clr-text-gray;
     text-transform: uppercase;
     font-weight: bold;
     padding-left: 2px;
@@ -163,5 +158,6 @@ body {
 
 .expiry_cvv {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }

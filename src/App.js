@@ -50,12 +50,7 @@ const App = () => {
             <label htmlFor="cardNumber" className="inputBox-key">
               card number
             </label>
-            <input
-              type="number"
-              className="inputBox-value"
-              maxLength={16}
-              id="cardNumber"
-            />
+            <input type="number" className="inputBox-value" id="cardNumber" />
           </div>
           <div className="inputBox">
             <label htmlFor="cardHolder" className="inputBox-key">
@@ -69,14 +64,19 @@ const App = () => {
               <label htmlFor="expiryDate" className="inputBox-key">
                 expiry date
               </label>
-              <input type="text" className="inputBox-value" id="expiryDate" />
+              <input
+                type="text"
+                className="inputBox-value"
+                id="expiryDate"
+                placeholder="MM/YY"
+              />
             </div>
 
             <div className="inputBox">
               <label htmlFor="cvv" className="inputBox-key">
                 CVV
               </label>
-              <input type="text" className="inputBox-value" id="cvv" />
+              <input type="number" className="inputBox-value" id="cvv" />
             </div>
           </div>
         </form>
