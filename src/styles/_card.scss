@@ -1,0 +1,123 @@
+@use "base";
+@use "variables";
+@use "mixin";
+
+.container {
+  perspective: 1000px;
+  perspective-origin: 50% 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  padding-top: 6rem;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  width: 22rem;
+  height: 14rem;
+  background: linear-gradient(30deg, #93278f, #29abe2);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: -1px 10px 11px 2px rgb(0 0 0 / 30%);
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+
+  &.isRotated {
+    transform: rotateY(180deg);
+  }
+
+  &-front,
+  &-back {
+    position: absolute;
+    inset: 0 0 0 0;
+  }
+
+  &-front {
+    @include mixin.flexbox(column, space-between, stretch);
+    backface-visibility: hidden;
+    padding: 2rem;
+
+    &-top {
+      @include mixin.flexbox(row, space-between, center);
+    }
+
+    &-cardNumber {
+      color: variables.$clr-white;
+      font-size: variables.$fs-medium;
+    }
+
+    &-bottom {
+      @include mixin.flexbox(row, space-between, center);
+    }
+  }
+
+  &-back {
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+
+    &-cvv {
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+      padding: 0.7rem;
+      @include mixin.flexbox(row, flex-end, center);
+      gap: 0.6rem;
+      color: variables.$clr-black;
+
+      & span {
+        width: 32px;
+      }
+
+      &::before,
+      &::after {
+        position: absolute;
+        width: 60px;
+        height: 50px;
+        background: #fff;
+        border-radius: 50%;
+        z-index: -1;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        content: "";
+        left: 0;
+      }
+      &::after {
+        content: "";
+        right: 0;
+      }
+    }
+
+    &-stripe {
+      width: 100%;
+      height: 40px;
+      background: #000;
+      position: relative;
+      top: 30px;
+    }
+  }
+
+  &-expiryDate-wrapper,
+  &-holder-wrapper {
+    @include mixin.flexbox(column, flex-end, stretch);
+
+    gap: 0.3rem;
+  }
+  &-expire-value {
+    align-self: flex-start;
+  }
+
+  &-holder-value {
+    align-self: flex-start;
+    text-transform: uppercase;
+  }
+
+  &-key {
+    font-size: variables.$fs-small;
+    text-transform: capitalize;
+  }
+}
